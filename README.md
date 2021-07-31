@@ -74,7 +74,7 @@ You can run queries from there:
 From the project root, run:  
 `make cleardb`
 
-If this doesn't work and you want to start with a clean slate, consider shutting everything down (`make stopall`, stop the docker containers) and remove the data directory:  
+If this doesn't work and you want to start with a clean slate, consider shutting everything down (`make stopall` & `cd docker ; docker-compose down`) and remove the data directory:  
 `rm -rf docker/data`  
 Then start everything again (`cd docker ; docker-compose up` and `make startall`)
 
