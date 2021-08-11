@@ -83,6 +83,14 @@ In the file `src/matchengine/persist/state_save_load.rs` the macro `sqlx::migrat
 
 These migration scripts will mainly establish the database structure (tables, indexes, unique contraints, ...), but with the file `migrations/20210223072038_markets_preset.sql` it will also insert some data about the available assets and the available trading pairs.
 
+### DB abstractions in Rust
+There is an abstraction of the database in Rust in the file `dingir-exchange/src/storage/models.rs`.  
+
+Caution:  
+If you change add or remove attributes/columns to the table abstractions (adding or removing lines that contain the syntax `arg.add()`), make sure to change the respective number of arguments constant accordingly (`const ARGN: i32`). This number should always be equal to the number of lines with the syntax `arg.add()`.  
+
+Dingir-Exchange uses these db models to create *prepared statements*.
+
 ## Matchengine gRPC interface
 The gRPC interface of the matchengine is defined in the file `proto/exchange/matchengine.proto`.  
 Dingir-Exchange uses [tonic](https://crates.io/crates/tonic) in the file `./build.rs`, to compile the proto file into Rust code.
