@@ -83,6 +83,24 @@ In the file `src/matchengine/persist/state_save_load.rs` the macro `sqlx::migrat
 
 These migration scripts will mainly establish the database structure (tables, indexes, unique contraints, ...), but with the file `migrations/20210223072038_markets_preset.sql` it will also insert some data about the available assets and the available trading pairs.
 
+## Matchengine gRPC interface
+The gRPC interface of the matchengine is defined in the file `proto/exchange/matchengine.proto`.  
+Dingir-Exchange uses [tonic](https://crates.io/crates/tonic) in the file `./build.rs`, to compile the proto file into Rust code.
+The created file has been checked in onto GitHub, namely into the src folder: `src/matchengine/rpc/matchengine.rs`.
+This implementation of the interface forwards requests to the methods in the file `src/matchengine/server.rs`. You can find a method for each *service* that is defined in `matchengine.proto`, but the names are transformed from CamelCase to snake_case to fit the rust naming conventions.  
+
+For example there is a service called `OrderPut` registered in the file `matchengine.proto`:
+```GRPC
+rpc OrderPut(OrderPutRequest) returns (OrderInfo)
+    option (google.api.http) = {
+      post : "/api/order"
+      body : "*"
+    };
+  }
+```
+  
+Requests received on this endpoint would then be forwarded to the method `async fn order_put(&self, request: Request<OrderPutRequest>) -> Result<Response<OrderInfo>, Status>` in the file `src/matchengine/server.rs`.
+
 ## Test suite
 There is a test suite written in TypeScript. It connects directly to the matching engine, over the matching engine's GRPC interface (it does **not** pass through *Envoy* or *Kafka*).
 
