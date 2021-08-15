@@ -19,7 +19,7 @@ Download source code:
 
 run 
 ```bash
-cd docker
+cd orchestra/docker
 docker-compose up
 ```
 
@@ -54,9 +54,14 @@ For once: `make taillogs`, continuously: `make viewlogs`
 Shutdown the matching engine:
 `make stopall`
 
+## Dependencies
+
+### orchestra
+Dingir-Exchange outsources the docker environment (PostgreSQL, Kafka, ZooKeeper, Envoy) and the Protocol Buffers (gRPC interface definition) into the library [orchestra](https://github.com/fluidex/orchestra).
+
 ## Database
 
-As defined in `docker/docker-compose.yaml`, Postgres stores its data in the folder `./data/volumes/postgres_data`.
+As defined in `orchestra/docker/docker-compose.yaml`, Postgres stores its data in the folder `./orchestra/docker/volumes/exchange_db/data`.
 
 ### Manage DB
 
@@ -74,9 +79,9 @@ You can run queries from there:
 From the project root, run:  
 `make cleardb`
 
-If this doesn't work and you want to start with a clean slate, consider shutting everything down (`make stopall` & `cd docker ; docker-compose down`) and remove the data directory:  
-`rm -rf docker/data`  
-Then start everything again (`cd docker ; docker-compose up` and `make startall`)
+If this doesn't work and you want to start with a clean slate, consider shutting everything down (`make stopall` & `cd orchestra/docker ; docker-compose down`) and remove the data directory:  
+`rm -rf ./orchestra/docker/volumes`  
+Then start everything again (`cd orchestra/docker ; docker-compose up` and `make startall`)
 
 ### Migration scripts
 In the file `src/matchengine/persist/state_save_load.rs` the macro `sqlx::migrate!()` is called. By default, it will check out all the scripts that are in the `migrations` (only the root directory, subdirectories are being ignored), and run them against the db, in the order of the timestamps their filename starts with.
