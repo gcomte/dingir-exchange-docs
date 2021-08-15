@@ -4,7 +4,7 @@ DINGIR-EXCHANGE SETUP (on Ubuntu)
 ## Installation
 
 Download source code:  
-```git clone git@github.com:Fluidex/dingir-exchange.git ; cd dingir-exchange```
+```git clone --recursive git@github.com:Fluidex/dingir-exchange.git ; cd dingir-exchange```
 
 ### Prerequisite
 
