@@ -11,9 +11,11 @@ Download source code:
 * cmake
 * librdkafka
 
+```bash
+apt install cmake librdkafka-dev
 ```
-# apt install cmake librdkafka-dev
-```
+
+You might as well try to run the following script to automatically install all dependencies: `./scripts/install_all_deps.sh`.
 
 ### Starting microservice infrastructure
 
