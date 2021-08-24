@@ -61,6 +61,9 @@ Shutdown the matching engine:
 ### orchestra
 Dingir-Exchange outsources the docker environment (PostgreSQL, Kafka, ZooKeeper, Envoy) and the Protocol Buffers (gRPC interface definition) into the library [orchestra](https://github.com/fluidex/orchestra).
 
+## Configuration
+There is an `.env` file in the root directory, which lets you pass some Rust parameters (for example for Logging) but also lets you specify which environment you want to run on. Those environments are then further defined in the yaml files under in the `config` directory (e.g. `development.yaml`)
+
 ## Database
 
 As defined in `orchestra/docker/docker-compose.yaml`, Postgres stores its data in the folder `./orchestra/docker/volumes/exchange_db/data`.
