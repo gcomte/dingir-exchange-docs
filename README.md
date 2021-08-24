@@ -126,6 +126,9 @@ Install it:
 and run it:  
 `npx ts-node trade.ts`
 
+### Environment
+If you don't want to use the local standard setup but instead want to change IPs, ports and/or container names, you can copy the .env template file `examples/js/.env.advise` to `examples/js/.env` and reconfigure the variables to your needs.
+
 ### Data
 
 The test suite will work with a couple of data sets that are stored in different places.
