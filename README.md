@@ -120,7 +120,7 @@ rpc OrderPut(OrderPutRequest) returns (OrderInfo)
 Requests received on this endpoint would then be forwarded to the method `async fn order_put(&self, request: Request<OrderPutRequest>) -> Result<Response<OrderInfo>, Status>` in the file `src/matchengine/server.rs`.
 
 ## Test suite
-There is a test suite written in TypeScript. It connects directly to the matching engine, over the matching engine's GRPC interface (it does **not** pass through *Envoy* or *Kafka*).
+There is a test suite written in TypeScript. It connects directly to the matching engine, over the matching engine's GRPC interface (it does **not** pass through *Envoy* or *Kafka*). However, if you want to test the *consumption* of Kafka subscriptions, you may turn these tests on by adding the line `TEST_MQ=1` to the file `examples/js/.env`.
 
 ### Running the test suite
 Install it:  
