@@ -21,14 +21,13 @@ You might as well try to run the following script to automatically install all d
 
 run 
 ```bash
-cd orchestra/docker
-docker-compose up
+make start-compose
 ```
 
 Starts the following containers:  
 * Kafka: `exchange_kafka`
 * ZooKeeper: `exchange_zookeeper`
-* PostgreSQL Timescale: `exchange_pq`
+* PostgreSQL Timescale: `exchange_db`
 * Envoy: `exchange_envoy`
 
 Envoy is a service proxy and it's deployment area is displayed in the following, simplified architecture design:
@@ -84,8 +83,8 @@ You can run queries from there:
 From the project root, run:  
 `make cleardb`
 
-If this doesn't work and you want to start with a clean slate, consider shutting everything down (`make stopall` & `cd orchestra/docker ; docker-compose down`) and remove the data directory:  
-`rm -rf ./orchestra/docker/volumes`  
+If this doesn't work and you want to start with a clean slate, consider shutting everything down (`make stopall` & `make stop-compose`) and remove the data directory:  
+`make clean-compose`  
 Then start everything again (`cd orchestra/docker ; docker-compose up` and `make startall`)
 
 ### Migration scripts
