@@ -41,7 +41,7 @@ Fire it up:
 `make startall`
 
 See all the running processes:  
-`make pgrep`
+`make list`
 
 4 processes should be running:
 * matchengine
