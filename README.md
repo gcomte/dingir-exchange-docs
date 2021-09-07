@@ -121,6 +121,9 @@ Requests received on this endpoint would then be forwarded to the method `async 
 ## Test suite
 There is a test suite written in TypeScript. It connects directly to the matching engine, over the matching engine's GRPC interface (it does **not** pass through *Envoy* or *Kafka*). However, if you want to test the *consumption* of Kafka subscriptions, you may turn these tests on by adding the line `TEST_MQ=1` to the file `examples/js/.env`.
 
+Changing the .env variables might only go into effect after manually recompiling the entire TypeScript application:  
+`cd examples/js && node_modules/typescript/bin/tsc --build --force ./tsconfig.json`
+
 ### Running the test suite
 Install it:  
 `cd examples/js ; npm i`
