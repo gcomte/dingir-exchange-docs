@@ -21,7 +21,8 @@ You might as well try to run the following script to automatically install all d
 
 run 
 ```bash
-make start-compose
+cd orchestra/docker
+docker-compose up
 ```
 
 Starts the following containers:  
@@ -129,7 +130,7 @@ Install it:
 `cd examples/js ; npm i`
 
 and run it:  
-`npx ts-node trade.ts`
+`npx ts-node tests/trade.ts`
 
 ### Environment
 If you don't want to use the local standard setup but instead want to change IPs, ports and/or container names, you can copy the `.env`-template-file `examples/js/.env.advise` to `examples/js/.env` and reconfigure the variables to your needs.
